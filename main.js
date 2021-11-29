@@ -6,16 +6,21 @@ function poNacteni() {
     cnv = document.getElementById("platno");
     ctx = cnv.getContext("2d");
 
-    setInterval(animace, 10);
+    setInterval(animace, 30);
 }
 
 let xKruh = 100;
 let yKruh = 150;
+let rKruh = 20;
+let dxKruh = -4;
+let dyKruh = -1;
+
 let xObr = 250;
 let yObr = 180;
 let wObr = 40;
 let hObr = 40;
 let uhelObr = 0;
+
 function animace() {
     ctx.clearRect(0,0, cnv.width, cnv.height);
 
@@ -34,11 +39,17 @@ function animace() {
     ctx.fill();
 
     //kruh
-    xKruh = xKruh +2;
-    yKruh = yKruh -1;
+    xKruh = xKruh + dxKruh;
+    yKruh = yKruh + dyKruh;
+    if (xKruh - rKruh <= 0) {
+        dxKruh = -1 * dxKruh;
+    }
+    if (xKruh + rKruh >= cnv.width) {
+        dxKruh = -1 * dxKruh;
+    }
     ctx.beginPath();
     ctx.fillStyle = "blue";
-    ctx.arc(xKruh,yKruh,20,0,2*Math.PI);
+    ctx.arc(xKruh,yKruh,rKruh,0,2*Math.PI);
     ctx.fill();
 
     //obrazek
