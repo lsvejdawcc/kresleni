@@ -1,13 +1,21 @@
 let cnv,ctx;
+let obr = new Image(); //ten samy prvek jako HTML <img ...
+obr.src = "./mimon.png";
+
 function poNacteni() {
     cnv = document.getElementById("platno");
     ctx = cnv.getContext("2d");
 
-    setInterval(animace, 100);
+    setInterval(animace, 10);
 }
 
 let xKruh = 100;
 let yKruh = 150;
+let xObr = 250;
+let yObr = 180;
+let wObr = 40;
+let hObr = 40;
+let uhelObr = 0;
 function animace() {
     ctx.clearRect(0,0, cnv.width, cnv.height);
 
@@ -32,4 +40,16 @@ function animace() {
     ctx.fillStyle = "blue";
     ctx.arc(xKruh,yKruh,20,0,2*Math.PI);
     ctx.fill();
+
+    //obrazek
+    xObr = xObr + 1;
+    yObr = yObr - 2;
+    wObr = wObr -1;
+    hObr = hObr -1;
+    uhelObr = uhelObr + 5; //ve stupnich
+    ctx.save(); //ulozim nastaveni platna
+    ctx.translate(xObr,yObr); //nastavim nove nulove souradnice
+    ctx.rotate((uhelObr/360) * 2*Math.PI);
+    ctx.drawImage(obr, -wObr/2, -hObr/2, wObr, hObr);
+    ctx.restore(); //obnovim ulozene nastaveni platna
 }
