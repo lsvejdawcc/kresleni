@@ -2,12 +2,27 @@ let cnv,ctx;
 let obr = new Image(); //ten samy prvek jako HTML <img ...
 obr.src = "./mimon.png";
 
+function stiskKlavesyDolu(udalost) {
+    console.log(udalost.key);
+    if (udalost.key == "w") {
+        yObd = yObd -4;
+    }
+    if (udalost.key == "s") {
+        yObd = yObd +4;
+    }
+}
+
 function poNacteni() {
     cnv = document.getElementById("platno");
     ctx = cnv.getContext("2d");
 
+    document.addEventListener("keydown", stiskKlavesyDolu);
+
     setInterval(animace, 30);
 }
+
+let xObd = 10;
+let yObd = 200;
 
 let xKruh = 100;
 let yKruh = 150;
@@ -34,17 +49,14 @@ function animace() {
 
     //obdelnik
     ctx.beginPath();
-    ctx.rect(10,200, 40,20);
+    ctx.rect(xObd,yObd, 40,20);
     //ctx.stroke();
     ctx.fill();
 
     //kruh
     xKruh = xKruh + dxKruh;
     yKruh = yKruh + dyKruh;
-    if (xKruh - rKruh <= 0) {
-        dxKruh = -1 * dxKruh;
-    }
-    if (xKruh + rKruh >= cnv.width) {
+    if (xKruh - rKruh <= 0 || xKruh + rKruh >= cnv.width) {
         dxKruh = -1 * dxKruh;
     }
     ctx.beginPath();
