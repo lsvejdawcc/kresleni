@@ -59,6 +59,9 @@ function animace() {
     if (xKruh - rKruh <= 0 || xKruh + rKruh >= cnv.width) {
         dxKruh = -1 * dxKruh;
     }
+    if (yKruh - rKruh <= 0 || yKruh + rKruh >= cnv.height) {
+        dyKruh = -1 * dyKruh;
+    }
     ctx.beginPath();
     ctx.fillStyle = "blue";
     ctx.arc(xKruh,yKruh,rKruh,0,2*Math.PI);
