@@ -75,4 +75,14 @@ function animace() {
     ctx.rotate((uhelObr/360) * 2*Math.PI);
     ctx.drawImage(obr, -wObr/2, -hObr/2, wObr, hObr);
     ctx.restore(); //obnovim ulozene nastaveni platna
+
+    //text
+    ctx.font = "30px Verdana";
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = "green";
+    ctx.strokeText("Nazdarek!", 10, 250);
+
+    ctx.font = "30px Verdana";
+    ctx.fillStyle = "green";
+    ctx.fillText("Kasparek!", 10, 280);
 }
